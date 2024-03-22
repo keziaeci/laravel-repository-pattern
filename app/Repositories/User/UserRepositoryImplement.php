@@ -20,7 +20,34 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     }
 
     // Write something awesome :)
-    function findByName(string $name): User {
-        return $this->model->where('name' , $name)->first();
+
+    function all() {
+        return $this->model->all();
+    }
+
+    function find($id) : ?User {
+        return $this->model->find($id);
+    }
+
+    function findByName(string $name): ?User {
+        return $this->model->where('name' , 'LIKE' , "%$name%")->first();
+    }
+
+    function findByEmail(string $email): ?User {
+        return $this->model->where('email', 'LIKE' ,  "%$email%")->first();
+    }
+    function findByUsername(string $username): ?User {
+        return $this->model->where('username', 'LIKE' , "%$username%")->first();
+    }
+    function create($data) : User {
+        return $this->model->create($data);
+    }
+    function update($id , $data) : User {
+        // return $this->model->findOrFail($id)->update($id,$data);
+        return $this->update($id,$data);
+    }
+
+    function delete($id) {
+        return $this->model->delete($id);
     }
 }
