@@ -23,6 +23,7 @@ class UserController extends Controller
     }
 
     function findId($id) : JsonResponse {
+        // dd($id);
         return $this->userService->find($id)->toJson();
     }
 

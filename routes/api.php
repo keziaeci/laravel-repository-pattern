@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use Illuminate\Routing\RouteRegistrar;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +22,30 @@ use Illuminate\Routing\RouteRegistrar;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::middleware('guest:sanctum')->group(function () {
+    Route::controller(RegisterController::class)->group(function () {
+        Route::post('/users', RegisterController::class);
+    });
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('/login', 'login');
+    });
+});
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/whoami', function() {
+        return response()->json(Auth::user());
+    });
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/users' , 'getAll');
-    Route::get('/user/name/{name}' , 'findName');
-    Route::get('/user/id/{id}' , 'findId');
-    Route::get('/user/email/{email}' , 'findEmail');
-    Route::get('/user/username/{username}' , 'findUsername');
-    Route::post('/users', 'createUser');
-    Route::patch('/users/{id}/update', 'updateUser');
-    Route::delete('/user/{id}' , 'deleteUser');
+    Route::post('/logout' , [AuthController::class, 'logout']);
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users' , 'getAll');
+        Route::get('/user/name/{name}' , 'findName');
+        Route::get('/user/id/{id}' , 'findId');
+        Route::get('/user/email/{email}' , 'findEmail');
+        Route::get('/user/username/{username}' , 'findUsername');
+        // Route::post('/users', 'createUser');
+        Route::patch('/users/{id}/update', 'updateUser');
+        Route::delete('/user/{id}' , 'deleteUser');
+    });
 });

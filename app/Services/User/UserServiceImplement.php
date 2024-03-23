@@ -51,8 +51,8 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     function find($id) : UserService {
       $data = $this->mainRepository->find($id);
-      
-      if (empty($result)) {
+
+      if (empty($data)) {
         return $this->setStatus(false)
                     ->setCode(404)
                     ->setMessage('User not found!');
@@ -123,6 +123,8 @@ class UserServiceImplement extends ServiceApi implements UserService{
         
         
         $result = $this->mainRepository->create($data);
+        // $token = $result->createToken('myToken');
+        // $result['token'] = $token->plainTextToken;
 
         return $this->setStatus(true)
         ->setCode(200)
