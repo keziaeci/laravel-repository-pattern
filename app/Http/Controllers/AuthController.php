@@ -32,7 +32,9 @@ class AuthController extends Controller
             $request->user()->tokens()->delete();
     
             return response()->json([
-                'message' => 'Logged out'
+                'success' => true,
+                'code' => 200,
+                'message' => 'User Logged Out Successfully',
             ]);
         } catch (\Throwable $th) {
             return response()->json([

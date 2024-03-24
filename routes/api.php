@@ -7,6 +7,7 @@ use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,14 @@ use App\Http\Controllers\RegisterController;
 // });
 Route::middleware('guest:sanctum')->group(function () {
     Route::controller(RegisterController::class)->group(function () {
-        Route::post('/users', RegisterController::class);
+        Route::post('/user/register', RegisterController::class);
     });
     Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login');
+    });
+    Route::get('/users/all', function () {
+        return User::where('id',1)->first();
+        // return User::all();
     });
 });
 

@@ -120,7 +120,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     function create($data) : UserService {
       try {
-        
+        $data['email_verified_at'] = null;
         
         $result = $this->mainRepository->create($data);
         // $token = $result->createToken('myToken');
