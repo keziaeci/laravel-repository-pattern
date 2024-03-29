@@ -72,6 +72,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
                   ->setMessage('User Retrieved Successfully')
                   ->setResult($result);
     }
+
     function findByName(string $name) : UserService {
       try {
         $result = $this->mainRepository->findByName($name);
@@ -90,6 +91,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
           return $this->exceptionResponse($e);
       }
     }
+
     function findByEmail(string $email) : UserService {
       try {
         $result = $this->mainRepository->findByEmail($email);
@@ -108,6 +110,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
           return $this->exceptionResponse($e);
       }
     }
+
     function findByUsername(string $username): UserService {
       try {
         $result = $this->mainRepository->findByUsername($username);
@@ -157,6 +160,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
         return $this->exceptionResponse($e);
       }
     }
+    
     function delete($id) : UserService {
       try {
         $result = $this->mainRepository->delete($id);

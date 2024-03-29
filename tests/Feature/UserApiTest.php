@@ -51,6 +51,7 @@ class UserApiTest extends TestCase
             'data' => User::where('name', 'like' ,'%rena%')->first()->toArray()
         ]);
     }
+
     function test_get_user_by_username_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
         ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
@@ -63,6 +64,7 @@ class UserApiTest extends TestCase
             'data' => User::where('username', 'like' ,'%ren%')->first()->toArray()
         ]);
     }
+
     function test_get_user_by_email_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
         ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
@@ -75,6 +77,7 @@ class UserApiTest extends TestCase
             'data' => User::where('email', 'like' ,'%ren%')->first()->toArray()
         ]);
     }
+    
     function test_delete_user_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
         ->withHeader('Authorization', 'Bearer 15|Oaitdm48bETI4OABuvqisNlV1EKM09qAT8Z4dZts75ab9ffe')

@@ -11,13 +11,7 @@ interface UserRepository extends Repository{
 
     
     function all();
-
     function find($id) : ?User ;
-    /**
-     * find a user by name
-     * @param string $name
-     * @return User
-     */
     function findByName(string $name) : ?User ;
     function findByEmail(string $email) : ?User ;
     function findByUsername(string $username) : ?User ;
