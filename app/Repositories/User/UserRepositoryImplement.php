@@ -48,6 +48,8 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     }
 
     function delete($id) {
-        return $this->model->delete($id);
+        return $this->model->destroy($id);
+        // delete() wont work
+        // return $this->model->delete($id);
     }
 }

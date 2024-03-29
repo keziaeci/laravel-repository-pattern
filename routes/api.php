@@ -30,10 +30,10 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login');
     });
-    Route::get('/users/all', function () {
-        return User::where('id',1)->first();
-        // return User::all();
-    });
+    // Route::get('/users/all', function () {
+    //     return User::where('id',1)->first();
+    //     // return User::all();
+    // });
 });
 
 Route::middleware('auth:sanctum')->group(function () {

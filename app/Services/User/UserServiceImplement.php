@@ -2,9 +2,10 @@
 
 namespace App\Services\User;
 
-use App\Http\Requests\PostUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use LaravelEasyRepository\ServiceApi;
+use App\Http\Requests\PostUserRequest;
 use App\Repositories\User\UserRepository;
 
 class UserServiceImplement extends ServiceApi implements UserService{
@@ -35,9 +36,14 @@ class UserServiceImplement extends ServiceApi implements UserService{
     // Define your custom methods :)
 
     function all() : UserService {
-      $data = $this->mainRepository->all();
+      // $result = Cache::remember('users.all' , 60 , function () {
+        $result = $this->mainRepository->all();
+        // return $this->mainRepository->all();
+      // });
+      // dd(Cache::get('users.all'));
+      // dd($result);
       
-      if (empty($data)) {
+      if (empty($result)) {
         return $this->setStatus(false)
                     ->setCode(404)
                     ->setMessage('No Users Yet!');
@@ -46,13 +52,16 @@ class UserServiceImplement extends ServiceApi implements UserService{
       return $this->setStatus(true) 
                   ->setCode(200)
                   ->setMessage('Users Retrieved Successfully')
-                  ->setResult($data);
+                  ->setResult($result);
     }
 
     function find($id) : UserService {
-      $data = $this->mainRepository->find($id);
-
-      if (empty($data)) {
+      $result = $this->mainRepository->find($id);
+      // $result = Cache::remember('users.find' , 60 , function () use ($id) {
+      //   return $this->mainRepository->find($id);
+      // });
+      
+      if (empty($result)) {
         return $this->setStatus(false)
                     ->setCode(404)
                     ->setMessage('User not found!');
@@ -61,7 +70,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
       return $this->setStatus(true)
                   ->setCode(200)
                   ->setMessage('User Retrieved Successfully')
-                  ->setResult($data);
+                  ->setResult($result);
     }
     function findByName(string $name) : UserService {
       try {
