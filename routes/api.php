@@ -5,8 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Genre;
 use App\Models\User;
 
 /*
@@ -30,10 +34,6 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login');
     });
-    // Route::get('/users/all', function () {
-    //     return User::where('id',1)->first();
-    //     // return User::all();
-    // });
 });
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -49,8 +49,25 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user/id/{id}' , 'findId');
         Route::get('/user/email/{email}' , 'findEmail');
         Route::get('/user/username/{username}' , 'findUsername');
-        // Route::post('/users', 'createUser');
         Route::patch('/users/{id}/update', 'updateUser');
         Route::delete('/user/{id}' , 'deleteUser');
+    });
+
+    Route::controller(GenreController::class)->group(function () {
+        Route::get('/genres', 'index');
+        Route::post('/genre', 'store');
+    });
+
+    Route::controller(GameController::class)->group(function () {
+        Route::get('/games', 'index');
+        Route::get('/game/title/{title}', 'findTitle');
+        Route::get('/game/genre/{genre}', 'findGenre');
+        Route::post('/game','store');
+    });
+
+    Route::controller(PublisherController::class)->group(function () {
+        Route::get('/publishers', 'index');
+        Route::get('/publisher/name/{name}', 'findName');
+        Route::post('/publisher', 'store');
     });
 });

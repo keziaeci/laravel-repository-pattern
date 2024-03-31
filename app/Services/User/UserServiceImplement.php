@@ -43,7 +43,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
       // dd(Cache::get('users.all'));
       // dd($result);
       
-      if (empty($result)) {
+      if ($result->isEmpty()) {
         return $this->setStatus(false)
                     ->setCode(404)
                     ->setMessage('No Users Yet!');
