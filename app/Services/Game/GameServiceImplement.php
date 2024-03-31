@@ -82,4 +82,18 @@ class GameServiceImplement extends ServiceApi implements GameService{
         return $this->exceptionResponse($e);
       }
     }
+
+    function create($data) : GameService {
+      try {
+        $result = $this->mainRepository->create($data);
+
+        return $this->setStatus(true)
+        ->setCode(200)
+        ->setMessage('Game Created Successfully')
+        ->setResult($result);
+
+      } catch (\Exception $e) {
+        return $this->exceptionResponse($e);
+      }
+    }
 }

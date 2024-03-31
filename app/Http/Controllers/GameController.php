@@ -35,9 +35,9 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreGameRequest $request)
+    public function store(StoreGameRequest $request) : JsonResponse
     {
-        
+        return $this->gameService->create($request->validated())->toJson();
     }
 
     /**

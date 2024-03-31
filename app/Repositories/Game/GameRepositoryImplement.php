@@ -28,6 +28,10 @@ class GameRepositoryImplement extends Eloquent implements GameRepository{
     }
 
     function findByGenre(string $genre): ?Game {
-        return $this->model->whereRelation('genre' , 'name' , "%$genre%")->first();
+        return $this->model->whereRelation('genre' , 'name' , 'LIKE' , "%$genre%")->first();
+    }
+
+    function create($data) : Game {
+        return $this->model->create($data);
     }
 }

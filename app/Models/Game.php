@@ -10,6 +10,7 @@ class Game extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    // protected $with = ['genre','publisher'];
 
     function genre() : BelongsTo {
         return $this->belongsTo(Genre::class);
