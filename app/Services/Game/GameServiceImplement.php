@@ -109,4 +109,16 @@ class GameServiceImplement extends ServiceApi implements GameService{
         return $this->exceptionResponse($e);
       }
     }
+
+    function delete($id) : GameService {
+      try {
+        $this->mainRepository->delete($id);
+
+        return $this->setStatus(true)
+        ->setCode(200)
+        ->setMessage('Game Deleted Successfully');
+      } catch (\Exception $e) {
+        return $this->exceptionResponse($e);
+      }
+    }
 }

@@ -53,8 +53,8 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Game $game)
+    public function destroy($id) : JsonResponse
     {
-        
+        return $this->gameService->delete($id)->toJson();
     }
 }
