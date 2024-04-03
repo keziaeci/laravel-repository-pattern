@@ -10,4 +10,6 @@ interface GameRepository extends Repository{
     function findByTitle(string $title) : ?Game ;
     function findByGenre(string $genre) : ?Game ;
     function create($data) : Game ;
+    function update($id, $data) : Game;
+    function delete($id);
 }

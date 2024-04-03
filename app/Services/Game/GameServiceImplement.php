@@ -8,23 +8,23 @@ use App\Repositories\Game\GameRepository;
 
 class GameServiceImplement extends ServiceApi implements GameService{
 
-    /**
-     * set message api for CRUD
-     * @param string $title
-     * @param string $create_message
-     * @param string $update_message
-     * @param string $delete_message
-     */
-     protected $title = "";
-     protected $create_message = "";
-     protected $update_message = "";
-     protected $delete_message = "";
+  /**
+   * set message api for CRUD
+   * @param string $title
+   * @param string $create_message
+   * @param string $update_message
+   * @param string $delete_message
+   */
+    protected $title = "";
+    protected $create_message = "";
+    protected $update_message = "";
+    protected $delete_message = "";
 
-     /**
+    /**
      * don't change $this->mainRepository variable name
      * because used in extends service class
      */
-     protected $mainRepository;
+    protected $mainRepository;
 
     public function __construct(GameRepository $mainRepository)
     {
@@ -92,6 +92,19 @@ class GameServiceImplement extends ServiceApi implements GameService{
         ->setMessage('Game Created Successfully')
         ->setResult($result);
 
+      } catch (\Exception $e) {
+        return $this->exceptionResponse($e);
+      }
+    }
+
+    function update($id, $data) : GameService {
+      try {
+        $result = $this->mainRepository->update($id, $data);
+        // dd($data);
+        return $this->setStatus(true)
+        ->setCode(200)
+        ->setMessage('Game Updated Successfully')
+        ->setResult($result);
       } catch (\Exception $e) {
         return $this->exceptionResponse($e);
       }

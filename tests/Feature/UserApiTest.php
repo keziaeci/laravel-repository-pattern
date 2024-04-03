@@ -15,7 +15,7 @@ class UserApiTest extends TestCase
     public function test_get_all_users_api(): void
     {
         $response = $this->withHeader('Accept', 'application/json')
-                        ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
+                        ->withHeader('Authorization', 'Bearer 3|W4Fzd1bcF6AlhxgBS9MK82V4DCy5Mfrcziyp2LGJ82b4f050')
                         ->getJson('/api/users');
         $response->assertJson([
             'success' => true,
@@ -27,7 +27,7 @@ class UserApiTest extends TestCase
 
     function test_get_user_by_id_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
-        ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
+        ->withHeader('Authorization', 'Bearer 3|W4Fzd1bcF6AlhxgBS9MK82V4DCy5Mfrcziyp2LGJ82b4f050')
         ->getJson('/api/user/id/1');
 
         $response->assertJson([
@@ -41,33 +41,33 @@ class UserApiTest extends TestCase
 
     function test_get_user_by_name_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
-        ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
-        ->getJson('/api/user/name/rena');
+        ->withHeader('Authorization', 'Bearer 3|W4Fzd1bcF6AlhxgBS9MK82V4DCy5Mfrcziyp2LGJ82b4f050')
+        ->getJson('/api/user/name/dan');
 
         $response->assertJson([
             'success' => true,
             'code' => 200,
             'message' => 'User Retrieved Successfully',
-            'data' => User::where('name', 'like' ,'%rena%')->first()->toArray()
+            'data' => User::where('name', 'like' ,'%dan%')->first()->toArray()
         ]);
     }
 
     function test_get_user_by_username_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
-        ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
-        ->getJson('/api/user/username/ren');
+        ->withHeader('Authorization', 'Bearer 3|W4Fzd1bcF6AlhxgBS9MK82V4DCy5Mfrcziyp2LGJ82b4f050')
+        ->getJson('/api/user/username/dan');
 
         $response->assertJson([
             'success' => true,
             'code' => 200,
             'message' => 'User Retrieved Successfully',
-            'data' => User::where('username', 'like' ,'%ren%')->first()->toArray()
+            'data' => User::where('username', 'like' ,'%dan%')->first()->toArray()
         ]);
     }
 
     function test_get_user_by_email_api() : void {
         $response = $this->withHeader('Accept', 'application/json')
-        ->withHeader('Authorization', 'Bearer 4|uRhyG2FtcVx0MFVty12u9JRCssRvpardmzfhVwEt6c7ca8b7')
+        ->withHeader('Authorization', 'Bearer 3|W4Fzd1bcF6AlhxgBS9MK82V4DCy5Mfrcziyp2LGJ82b4f050')
         ->getJson('/api/user/email/ren');
 
         $response->assertJson([

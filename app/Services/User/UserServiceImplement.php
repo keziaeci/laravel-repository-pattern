@@ -154,7 +154,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
   
         return $this->setStatus(true)
         ->setCode(200)
-        ->setMessage('User Created Successfully')
+        ->setMessage('User Updated Successfully')
         ->setResult($result);
       } catch (\Exception $e) {
         return $this->exceptionResponse($e);

@@ -34,4 +34,15 @@ class GameRepositoryImplement extends Eloquent implements GameRepository{
     function create($data) : Game {
         return $this->model->create($data);
     }
+
+    function update($id, $data) : Game {
+        $game = $this->findOrFail($id);
+        $game->update($data);
+        return $game;
+        // no body returned on response when using $this->update($id,$data);
+    }
+
+    function delete($id) {
+        return $this->model->destroy($id);
+    }
 }

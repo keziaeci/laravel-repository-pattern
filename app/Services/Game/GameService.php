@@ -9,4 +9,6 @@ interface GameService extends BaseService{
     function findByTitle(string $title) : GameService ;
     function findByGenre(string $genre) : GameService ;
     function create($data) : GameService ;
+    function update($id, $data) : GameService ;
+    function delete($id) : GameService ;
 }

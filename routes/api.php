@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user/id/{id}' , 'findId');
         Route::get('/user/email/{email}' , 'findEmail');
         Route::get('/user/username/{username}' , 'findUsername');
-        Route::patch('/users/{id}/update', 'updateUser');
+        Route::patch('/user/{id}/update', 'updateUser');
         Route::delete('/user/{id}' , 'deleteUser');
     });
 
@@ -63,6 +63,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/game/title/{title}', 'findTitle');
         Route::get('/game/genre/{genre}', 'findGenre');
         Route::post('/game','store');
+        Route::patch('/game/{id}/update', 'update');
+        Route::delete('/game/{id}' , 'destroy');
     });
 
     Route::controller(PublisherController::class)->group(function () {

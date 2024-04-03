@@ -17,7 +17,7 @@ class UserController extends Controller
     }
     
     function getAll() : JsonResponse {
-        return Cache::remember('users.all' , 60 , function () {
+        return Cache::remember('users' , 60 , function () {
             return $this->userService->all()->toJson();
         });
     }
