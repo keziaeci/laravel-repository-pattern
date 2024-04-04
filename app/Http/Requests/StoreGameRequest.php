@@ -29,4 +29,12 @@ class StoreGameRequest extends FormRequest
             'publisher_id' => 'required',
         ];
     }
+
+    function messages(): array {
+        return [
+            'title.required' => 'The title cannot be empty darling!',
+            'size.required' => 'Although size doesn\'t matter, it doesn\'t mean that it can be none tho!',
+            'lang.required' => 'You ain\'t talk?',
+        ];
+    }
 }
