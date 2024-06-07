@@ -50,7 +50,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "User Registered Successfuly",
+                        "description": "User Registered Successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -116,7 +116,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "User Logged In Successfuly",
+                        "description": "User Logged In Successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -158,7 +158,9 @@
         },
         "/api/logout": {
             "post": {
-                "tags": ["Authentication"],
+                "tags": [
+                    "Authentication"
+                ],
                 "summary": "User Logout",
                 "description": "Logout current loggedin user",
                 "parameters": [],
@@ -166,17 +168,17 @@
                     "200": {
                         "description": "User Logged Out Successfully",
                         "content": {
-                            "application/json" :{
-                                "schema":{
+                            "application/json": {
+                                "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "success" :{
+                                        "success": {
                                             "type": "boolean"
                                         },
-                                        "code" :{
+                                        "code": {
                                             "type": "integer"
                                         },
-                                        "message" :{
+                                        "message": {
                                             "type": "string"
                                         }
                                     }
@@ -184,7 +186,7 @@
                             }
                         }
                     },
-                    "500" :{
+                    "500": {
                         "description": "User Logout Unsuccessful"
                     }
                 }
@@ -205,7 +207,7 @@
                 "parameters": [],
                 "responses": {
                     "200": {
-                        "description": "Current user retrieved successfuly",
+                        "description": "Current user retrieved successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -214,25 +216,25 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "id" :{
+                                                "id": {
                                                     "type": "string"
                                                 },
-                                                "name" :{
+                                                "name": {
                                                     "type": "string"
                                                 },
-                                                "username" :{
+                                                "username": {
                                                     "type": "string"
                                                 },
-                                                "email" :{
+                                                "email": {
                                                     "type": "string"
                                                 },
-                                                "email_verified_at" :{
+                                                "email_verified_at": {
                                                     "type": "string"
                                                 },
-                                                "created_at" :{
+                                                "created_at": {
                                                     "type": "string"
                                                 },
-                                                "updated_at" :{
+                                                "updated_at": {
                                                     "type": "string"
                                                 }
                                             }
@@ -250,7 +252,9 @@
         },
         "/api/users": {
             "get": {
-                "tags": ["User"],
+                "tags": [
+                    "User"
+                ],
                 "summary": "Get All Users",
                 "description": "Get All Users",
                 "parameters": [],
@@ -258,43 +262,43 @@
                     "200": {
                         "description": "Users Retrieved Successfully",
                         "content": {
-                            "application/json" : {
-                                "schema" :{
+                            "application/json": {
+                                "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "success" : {
+                                        "success": {
                                             "type": "boolean"
                                         },
-                                        "code" : {
+                                        "code": {
                                             "type": "integer"
                                         },
-                                        "message" : {
+                                        "message": {
                                             "type": "string"
                                         },
-                                        "data" : {
+                                        "data": {
                                             "type": "array",
-                                            "items" : {
+                                            "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "id" :{
+                                                    "id": {
                                                         "type": "string"
                                                     },
-                                                    "name" :{
+                                                    "name": {
                                                         "type": "string"
                                                     },
-                                                    "username" :{
+                                                    "username": {
                                                         "type": "string"
                                                     },
-                                                    "email" :{
+                                                    "email": {
                                                         "type": "string"
                                                     },
-                                                    "email_verified_at" :{
+                                                    "email_verified_at": {
                                                         "type": "string"
                                                     },
-                                                    "created_at" :{
+                                                    "created_at": {
                                                         "type": "string"
                                                     },
-                                                    "updated_at" :{
+                                                    "updated_at": {
                                                         "type": "string"
                                                     }
                                                 }
@@ -308,6 +312,423 @@
                     "404": {
                         "description": "Users not found",
                         "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/id/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by id",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "example": "null"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/name/{name}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by name",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "example": "null"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/email/{email}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by email",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "example": "null"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/username/{username}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user by username",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "example": "null"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/update": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Update",
+                "description": "User Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully",
+                        "content": {
                             "application/json" :{
                                 "schema" :{
                                     "type": "object",
@@ -320,6 +741,35 @@
                                         },
                                         "message" : {
                                             "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
                                         }
                                     }
                                 }
@@ -329,28 +779,34 @@
                 }
             }
         },
-        "/api/user/name/{name}": {
-            "get": {
+        "/api/user/{id}": {
+            "delete": {
+                "description": "Delete a user",
+                "summary": "Delete User",
                 "tags": ["User"],
-                "summary": "Get user by name",
-                "description": "",
                 "parameters": [{
-                    "name": "name",
+                    "name": "id",
                     "in": "path"
                 }],
                 "responses": {
                     "200": {
-                        "description": "User Retrieved Successfully",
+                        "description": "User deleted successfully",
                         "content": {
                             "application/json" :{
                                 "schema" :{
                                     "type": "object",
                                     "properties": {
+                                        "success" :{
+                                            "type": "boolean"
+                                        },
+                                        "code" :{
+                                            "type": "integer"
+                                        },
+                                        "message" :{
+                                            "type": "string"
+                                        },
                                         "data" : {
-                                            "type": "object",
-                                            "properties": {
-                                                
-                                            }
+                                            "type": "integer"
                                         }
                                     }
                                 }
@@ -374,12 +830,12 @@
                 "description": "Access token is missing or invalid",
                 "content": {
                     "application/json": {
-                        "schema" : {
+                        "schema": {
                             "type": "object",
                             "properties": {
-                                "message" : {
+                                "message": {
                                     "type": "string",
-                                    "example" : "Unauthenticated."
+                                    "example": "Unauthenticated."
                                 }
                             }
                         }

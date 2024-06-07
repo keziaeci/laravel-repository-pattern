@@ -45,8 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(UserController::class)->group(function () {
         Route::get('/users' , 'getAll');
-        Route::get('/user/name/{name}' , 'findName');
         Route::get('/user/id/{id}' , 'findId');
+        Route::get('/user/name/{name}' , 'findName');
         Route::get('/user/email/{email}' , 'findEmail');
         Route::get('/user/username/{username}' , 'findUsername');
         Route::patch('/user/{id}/update', 'updateUser');
