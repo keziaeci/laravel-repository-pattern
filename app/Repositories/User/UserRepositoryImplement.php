@@ -46,8 +46,12 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     }
     
     function update($id , $data) : User {
-        // return $this->model->findOrFail($id)->update($id,$data);
-        return $this->update($id,$data);
+        // return $this->model->findOrFail($id)->update($data);
+        // return $this->update($id,$data);
+        $user = tap($this->model->findOrFail($id))->update($data);
+        return $user;
+        // $user = tap($this->model)->update($data);
+        // return $this->model->tap($this->model)->update($id,$data);
     }
 
     function delete($id) {
