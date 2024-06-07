@@ -1,0 +1,396 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Repository Pattern API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/"
+        }
+    ],
+    "paths": {
+        "/api/user/register": {
+            "post": {
+                "summary": "User Register",
+                "tags": [
+                    "Authentication"
+                ],
+                "description": "User Register",
+                "parameters": [],
+                "requestBody": {
+                    "description": "Register new user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "username",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User Registered Successfuly",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Login",
+                "description": "Login using registered user",
+                "parameters": [],
+                "requestBody": {
+                    "description": "Login user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User Logged In Successfuly",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": ["Authentication"],
+                "summary": "User Logout",
+                "description": "Logout current loggedin user",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "User Logged Out Successfully",
+                        "content": {
+                            "application/json" :{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "success" :{
+                                            "type": "boolean"
+                                        },
+                                        "code" :{
+                                            "type": "integer"
+                                        },
+                                        "message" :{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500" :{
+                        "description": "User Logout Unsuccessful"
+                    }
+                }
+            }
+        },
+        "/api/whoami": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Authentication"
+                ],
+                "description": "Get current user",
+                "summary": "Get Current User's Detail",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Current user retrieved successfuly",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id" :{
+                                                    "type": "string"
+                                                },
+                                                "name" :{
+                                                    "type": "string"
+                                                },
+                                                "username" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "email_verified_at" :{
+                                                    "type": "string"
+                                                },
+                                                "created_at" :{
+                                                    "type": "string"
+                                                },
+                                                "updated_at" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get All Users",
+                "description": "Get All Users",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Users Retrieved Successfully",
+                        "content": {
+                            "application/json" : {
+                                "schema" :{
+                                    "type": "object",
+                                    "properties": {
+                                        "success" : {
+                                            "type": "boolean"
+                                        },
+                                        "code" : {
+                                            "type": "integer"
+                                        },
+                                        "message" : {
+                                            "type": "string"
+                                        },
+                                        "data" : {
+                                            "type": "array",
+                                            "items" : {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id" :{
+                                                        "type": "string"
+                                                    },
+                                                    "name" :{
+                                                        "type": "string"
+                                                    },
+                                                    "username" :{
+                                                        "type": "string"
+                                                    },
+                                                    "email" :{
+                                                        "type": "string"
+                                                    },
+                                                    "email_verified_at" :{
+                                                        "type": "string"
+                                                    },
+                                                    "created_at" :{
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at" :{
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Users not found",
+                        "content": {
+                            "application/json" :{
+                                "schema" :{
+                                    "type": "object",
+                                    "properties": {
+                                        "success" : {
+                                            "type": "boolean"
+                                        },
+                                        "code" : {
+                                            "type": "integer"
+                                        },
+                                        "message" : {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/name/{name}": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get user by name",
+                "description": "",
+                "parameters": [{
+                    "name": "name",
+                    "in": "path"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "User Retrieved Successfully",
+                        "content": {
+                            "application/json" :{
+                                "schema" :{
+                                    "type": "object",
+                                    "properties": {
+                                        "data" : {
+                                            "type": "object",
+                                            "properties": {
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "responses": {
+            "UnauthorizedError": {
+                "description": "Access token is missing or invalid",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "object",
+                            "properties": {
+                                "message" : {
+                                    "type": "string",
+                                    "example" : "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}

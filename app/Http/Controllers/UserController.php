@@ -22,6 +22,7 @@ class UserController extends Controller
         });
     }
 
+    // FIXME : forget cache data on different value
     function findId($id) : JsonResponse {
         return Cache::remember('users.find' , 60 , function () use ($id) {
             return $this->userService->find($id)->toJson();
