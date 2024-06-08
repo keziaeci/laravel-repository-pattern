@@ -36,9 +36,12 @@ class GameRepositoryImplement extends Eloquent implements GameRepository{
     }
 
     function update($id, $data) : Game {
-        $game = $this->findOrFail($id);
-        $game->update($data);
+        $game = tap($this->model->findOrFail($id))->update($data);
         return $game;
+        
+        // $game = $this->findOrFail($id);
+        // $game->update($data);
+        // return $game;
         // no body returned on response when using $this->update($id,$data);
     }
 

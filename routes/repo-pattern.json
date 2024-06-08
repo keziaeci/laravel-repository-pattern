@@ -1,3 +1,4 @@
+// TODO: Fix response code 
 {
     "openapi": "3.0.2",
     "info": {
@@ -690,7 +691,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "User Update",
+                "summary": "Update User",
                 "description": "User Update",
                 "parameters": [
                     {
@@ -729,17 +730,17 @@
                     "200": {
                         "description": "User updated successfully",
                         "content": {
-                            "application/json" :{
-                                "schema" :{
+                            "application/json": {
+                                "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "success" : {
+                                        "success": {
                                             "type": "boolean"
                                         },
-                                        "code" : {
+                                        "code": {
                                             "type": "integer"
                                         },
-                                        "message" : {
+                                        "message": {
                                             "type": "string"
                                         },
                                         "data": {
@@ -768,7 +769,7 @@
                                                 }
                                             }
                                         },
-                                        "errors" :{
+                                        "errors": {
                                             "type": "object"
                                         }
                                     }
@@ -783,14 +784,505 @@
             "delete": {
                 "description": "Delete a user",
                 "summary": "Delete User",
-                "tags": ["User"],
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/genres": {
+            "get": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Get All Genres",
+                "description": "Get all genres",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Genres retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/genre": {
+            "post": {
+                "tags": [
+                    "Genre"
+                ],
+                "summary": "Create Genre",
+                "description": "",
+                "parameters": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "uniqueItems": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Genre created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/games": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Get All Games",
+                "description": "Get All Games",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Games retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "size": {
+                                                        "type": "string"
+                                                    },
+                                                    "lang": {
+                                                        "type": "string"
+                                                    },
+                                                    "genre_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "publisher_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/title/{title}": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Get game by title",
+                "description": "Get game by title",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "size": {
+                                                    "type": "string"
+                                                },
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "genre_id": {
+                                                    "type": "integer"
+                                                },
+                                                "publisher_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/genre/{genre}": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Get game by genre",
+                "description": "Get game by genre",
+                "parameters": [
+                    {
+                        "name": "genre",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "size": {
+                                                    "type": "string"
+                                                },
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "genre_id": {
+                                                    "type": "integer"
+                                                },
+                                                "publisher_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game": {
+            "post": {
+                "summary": "Create Game",
+                "description": "Create a Game",
+                "tags": [
+                    "Game"
+                ],
+                "parameters": [],
+                "requestBody" : {
+                    "content": {
+                        "application/json" :{
+                            "schema" : {
+                                "type": "object",
+                                "properties": {
+                                    "title" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "size" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "lang" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "genre_id" : {
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "publisher_id" : {
+                                        "type": "integer",
+                                        "nullable": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Game Created Successfully",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type": "object",
+                                    "properties": {
+                                        "success" :{
+                                            "type": "boolean"
+                                        },
+                                        "code" :{
+                                            "type": "integer"
+                                        },
+                                        "message" :{
+                                            "type": "string"
+                                        },
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "size": {
+                                                    "type": "string"
+                                                },
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "genre_id": {
+                                                    "type": "integer"
+                                                },
+                                                "publisher_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" : {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/{id}/update": {
+            "patch": {
+                "summary": "Update Game",
+                "tags": ["Game"],
+                "description": "Update a Game",
                 "parameters": [{
                     "name": "id",
                     "in": "path"
                 }],
+                "requestBody" :{
+                    "content": {
+                        "application/json" :{
+                            "schema" :{
+                                "type": "object",
+                                "properties": {
+                                    "title" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "size" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "lang" : {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "genre_id" : {
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "publisher_id" : {
+                                        "type": "integer",
+                                        "nullable": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "User deleted successfully",
+                        "description": "Game Updated Successfully",
                         "content": {
                             "application/json" :{
                                 "schema" :{
@@ -805,8 +1297,74 @@
                                         "message" :{
                                             "type": "string"
                                         },
-                                        "data" : {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "size": {
+                                                    "type": "string"
+                                                },
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "genre_id": {
+                                                    "type": "integer"
+                                                },
+                                                "publisher_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" : {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/{id}": {
+            "delete": {
+                "tags": ["Game"],
+                "summary": "Delete Game",
+                "description": "Delete a game",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Game Deleted Successfully",
+                        "content": {
+                            "application/json" :{
+                                "schema"  :{
+                                    "type": "object",
+                                    "properties": {
+                                        "success" :{
+                                            "type": "boolean"
+                                        },
+                                        "code" :{
                                             "type": "integer"
+                                        },
+                                        "message" :{
+                                            "type": "string"
+                                        },
+                                        "data" : {
+                                            "example" : "null"
                                         }
                                     }
                                 }

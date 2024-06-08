@@ -88,7 +88,7 @@ class GameServiceImplement extends ServiceApi implements GameService{
         $result = $this->mainRepository->create($data);
 
         return $this->setStatus(true)
-        ->setCode(200)
+        ->setCode(201)
         ->setMessage('Game Created Successfully')
         ->setResult($result);
 
