@@ -1,4 +1,3 @@
-// TODO: Fix response code 
 {
     "openapi": "3.0.2",
     "info": {
@@ -898,7 +897,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Genre created successfully",
                         "content": {
                             "application/json": {
@@ -1152,29 +1151,29 @@
                     "Game"
                 ],
                 "parameters": [],
-                "requestBody" : {
+                "requestBody": {
                     "content": {
-                        "application/json" :{
-                            "schema" : {
+                        "application/json": {
+                            "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "title" : {
+                                    "title": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "size" : {
+                                    "size": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "lang" : {
+                                    "lang": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "genre_id" : {
+                                    "genre_id": {
                                         "type": "integer",
                                         "nullable": false
                                     },
-                                    "publisher_id" : {
+                                    "publisher_id": {
                                         "type": "integer",
                                         "nullable": false
                                     }
@@ -1187,20 +1186,20 @@
                     "201": {
                         "description": "Game Created Successfully",
                         "content": {
-                            "application/json" : {
-                                "schema" : {
+                            "application/json": {
+                                "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "success" :{
+                                        "success": {
                                             "type": "boolean"
                                         },
-                                        "code" :{
+                                        "code": {
                                             "type": "integer"
                                         },
-                                        "message" :{
+                                        "message": {
                                             "type": "string"
                                         },
-                                        "data" :{
+                                        "data": {
                                             "type": "object",
                                             "properties": {
                                                 "id": {
@@ -1229,7 +1228,7 @@
                                                 }
                                             }
                                         },
-                                        "errors" : {
+                                        "errors": {
                                             "type": "object"
                                         }
                                     }
@@ -1243,35 +1242,39 @@
         "/api/game/{id}/update": {
             "patch": {
                 "summary": "Update Game",
-                "tags": ["Game"],
+                "tags": [
+                    "Game"
+                ],
                 "description": "Update a Game",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path"
-                }],
-                "requestBody" :{
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
                     "content": {
-                        "application/json" :{
-                            "schema" :{
+                        "application/json": {
+                            "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "title" : {
+                                    "title": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "size" : {
+                                    "size": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "lang" : {
+                                    "lang": {
                                         "type": "string",
                                         "nullable": false
                                     },
-                                    "genre_id" : {
+                                    "genre_id": {
                                         "type": "integer",
                                         "nullable": false
                                     },
-                                    "publisher_id" : {
+                                    "publisher_id": {
                                         "type": "integer",
                                         "nullable": false
                                     }
@@ -1283,6 +1286,265 @@
                 "responses": {
                     "200": {
                         "description": "Game Updated Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "size": {
+                                                    "type": "string"
+                                                },
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "genre_id": {
+                                                    "type": "integer"
+                                                },
+                                                "publisher_id": {
+                                                    "type": "integer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/{id}": {
+            "delete": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Delete Game",
+                "description": "Delete a game",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game Deleted Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "example": "null"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/publishers": {
+            "get": {
+                "tags": [
+                    "Publisher"
+                ],
+                "summary": "Get All Publishers",
+                "description": "Get all publishers",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Publishers Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "origin": {
+                                                        "type": "string"
+                                                    },
+                                                    "founder": {
+                                                        "type": "string"
+                                                    },
+                                                    "founded": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/publisher/name/{name}": {
+            "get": {
+                "tags": [
+                    "Publisher"
+                ],
+                "summary": "Get Publisher by Name",
+                "description": "Get Publisher by Name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Publisher Retrieved Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "origin": {
+                                                    "type": "string"
+                                                },
+                                                "founder": {
+                                                    "type": "string"
+                                                },
+                                                "founded": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/publisher": {
+            "post": {
+                "description": "",
+                "tags": [
+                    "Publisher"
+                ],
+                "parameters": [],
+                "requestBody" :{
+                    "content": {
+                        "application/json" :{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name" :{
+                                        "type": "string",
+                                        "uniqueItems": true,
+                                        "nullable": false
+                                    },
+                                    "origin" :{
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "founder" :{
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "founded" :{
+                                        "type": "string",
+                                        "nullable": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Publisher Created Successfully",
                         "content": {
                             "application/json" :{
                                 "schema" :{
@@ -1300,71 +1562,27 @@
                                         "data" :{
                                             "type": "object",
                                             "properties": {
-                                                "id": {
-                                                    "type": "integer"
+                                                "name" :{
+                                                    "type": "string",
+                                                    "uniqueItems": true,
+                                                    "nullable": false
                                                 },
-                                                "title": {
-                                                    "type": "string"
+                                                "origin" :{
+                                                    "type": "string",
+                                                    "nullable": false
                                                 },
-                                                "size": {
-                                                    "type": "string"
+                                                "founder" :{
+                                                    "type": "string",
+                                                    "nullable": false
                                                 },
-                                                "lang": {
-                                                    "type": "string"
-                                                },
-                                                "genre_id": {
-                                                    "type": "integer"
-                                                },
-                                                "publisher_id": {
-                                                    "type": "integer"
-                                                },
-                                                "created_at": {
-                                                    "type": "string"
-                                                },
-                                                "updated_at": {
-                                                    "type": "string"
+                                                "founded" :{
+                                                    "type": "string",
+                                                    "nullable": false
                                                 }
                                             }
                                         },
-                                        "errors" : {
+                                        "errors" :{
                                             "type": "object"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/game/{id}": {
-            "delete": {
-                "tags": ["Game"],
-                "summary": "Delete Game",
-                "description": "Delete a game",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Game Deleted Successfully",
-                        "content": {
-                            "application/json" :{
-                                "schema"  :{
-                                    "type": "object",
-                                    "properties": {
-                                        "success" :{
-                                            "type": "boolean"
-                                        },
-                                        "code" :{
-                                            "type": "integer"
-                                        },
-                                        "message" :{
-                                            "type": "string"
-                                        },
-                                        "data" : {
-                                            "example" : "null"
                                         }
                                     }
                                 }
