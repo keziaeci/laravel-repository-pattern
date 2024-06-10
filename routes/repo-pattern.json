@@ -11,7 +11,7 @@
     ],
     "paths": {
         "/api/user/register": {
-            "post": {
+            "post": {Cache::forget('publishers');
                 "summary": "User Register",
                 "tags": [
                     "Authentication"

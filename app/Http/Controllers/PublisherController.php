@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePublisherRequest;
-use App\Http\Requests\UpdatePublisherRequest;
 use App\Models\Publisher;
-use App\Services\Publisher\PublisherService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\StorePublisherRequest;
+use App\Services\Publisher\PublisherService;
+use App\Http\Requests\UpdatePublisherRequest;
 
 class PublisherController extends Controller
 {
@@ -19,7 +20,9 @@ class PublisherController extends Controller
      */
     public function index() : JsonResponse
     {
-        return $this->publisherService->all()->toJson();
+        return Cache::remember('publishers', 60 , function () {
+            return $this->publisherService->all()->toJson();
+        });
     }
 
     function findName($name) : JsonResponse {

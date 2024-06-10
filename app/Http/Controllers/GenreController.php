@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
+use Illuminate\Http\JsonResponse;
+use App\Services\Genre\GenreService;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\PostGenreRequest;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
-use App\Models\Genre;
-use App\Services\Genre\GenreService;
-use Illuminate\Http\JsonResponse;
 
 class GenreController extends Controller
 {
@@ -21,7 +22,9 @@ class GenreController extends Controller
      */
     public function index() : JsonResponse
     {
-        return $this->genreService->all()->toJson();
+        return Cache::remember('genres', 60 , function () {
+            return $this->genreService->all()->toJson();
+        });
     }
 
     /**
